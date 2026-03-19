@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #070F1C;
+  --muted: #132542;
+  --border: rgb(226 232 240);
+  --card: #ffffff;
+
+  /* Brand */
+  --primary: #112033; /* navy */
+  --accent: #c0a375; /* gold */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+::selection {
+  background: rgb(192 163 117 / 0.28);
+}
+
+a {
+  text-decoration: none;
+}
+
+.bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgb(148 163 184 / 0.25) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+
+.shadow-soft {
+  box-shadow: 0 12px 30px rgb(2 6 23 / 0.08);
+}
+
