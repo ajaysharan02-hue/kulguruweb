@@ -45,14 +45,14 @@ export function SiteHeader({ brandName = "Kulguru Institute", logo, phone, email
             <img
               src={logo}
               alt={brandName}
-              className="w-32 "
+              className="md:w-32 w-18"
             />
           ) : (
             <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-r from-(--primary) to-(--accent) text-sm font-semibold text-white shadow-[0_8px_20px_rgb(15_107_76/0.32)] ring-1 ring-white/35">
               {String(brandName || "K").slice(0, 1).toUpperCase()}
             </span>
           )}
-       
+
         </Link>
         <nav className="hidden items-center gap-1 text-sm font-medium text-slate-700 md:flex">
           {items.map((i) => {
@@ -66,8 +66,8 @@ export function SiteHeader({ brandName = "Kulguru Institute", logo, phone, email
                 key={i.href}
                 href={i.href}
                 className={`rounded-xl px-4 py-2 transition ${active
-                    ? "bg-(--primary)/12 text-(--primary)"
-                    : "hover:bg-(--accent)/10 hover:text-(--primary)"
+                  ? "bg-(--primary)/12 text-(--primary)"
+                  : "hover:bg-(--accent)/10 hover:text-(--primary)"
                   }`}
               >
                 {i.label}
@@ -115,8 +115,8 @@ export function SiteHeader({ brandName = "Kulguru Institute", logo, phone, email
                     key={i.href}
                     href={i.href}
                     className={`rounded-2xl px-4 py-3 text-sm font-semibold transition ${active
-                        ? "bg-(--primary)/12 text-(--primary)"
-                        : "text-slate-700 hover:bg-(--accent)/10"
+                      ? "bg-(--primary)/12 text-(--primary)"
+                      : "text-slate-700 hover:bg-(--accent)/10"
                       }`}
                     onClick={() => setOpen(false)}
                   >
