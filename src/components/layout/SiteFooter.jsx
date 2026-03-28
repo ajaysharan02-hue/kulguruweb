@@ -43,7 +43,7 @@ function SocialIcon({ id }) {
   }
 }
 
-export function SiteFooter({ brandName = "Kulguru Institute", address, phone, email, socials = [] }) {
+export function SiteFooter({ brandName = "Kulguru Institute", logo, address, phone, email, socials = [] }) {
   const year = new Date().getFullYear();
   return (
     <footer className="relative overflow-hidden border-t border-[#1f8a62] bg-[#0f6b4c] text-white">
@@ -52,9 +52,18 @@ export function SiteFooter({ brandName = "Kulguru Institute", address, phone, em
         {/* Brand */}
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 text-base font-semibold text-white ring-1 ring-white/25">
-              {String(brandName || "K").slice(0, 1).toUpperCase()}
-            </span>
+            {logo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={logo}
+                alt={brandName}
+                className="h-11 w-11 rounded-2xl object-contain ring-1 ring-white/25 bg-white/10"
+              />
+            ) : (
+              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 text-base font-semibold text-white ring-1 ring-white/25">
+                {String(brandName || "K").slice(0, 1).toUpperCase()}
+              </span>
+            )}
             <div className="text-lg font-semibold tracking-tight">{brandName}</div>
           </div>
           <p className="mt-4 max-w-md text-sm leading-6 text-white/80">

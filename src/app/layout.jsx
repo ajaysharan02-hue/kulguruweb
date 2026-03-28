@@ -6,6 +6,7 @@ import { extractSocialLinks } from "@/lib/socials";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileFooterNav } from "@/components/layout/MobileFooterNav";
+import FloatingContact from "@/components/common/FloatingContact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,9 @@ export default async function RootLayout({ children }) {
   const settings = settingsRes?.data || {};
   const brandName = settings?.brandName || settings?.instituteName || SITE_NAME;
   const socials = extractSocialLinks(settings);
+  const whatsappLink = socials.find((s) => s.id === "whatsapp")?.url;
+  const phone = settings?.phone || settings?.contactPhone;
+  const logo = settings?.logo || settings?.logoUrl || null;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -46,6 +50,7 @@ export default async function RootLayout({ children }) {
       >
         <SiteHeader
           brandName={brandName}
+          logo={logo}
           phone={settings?.phone || settings?.contactPhone}
           email={settings?.email || settings?.contactEmail}
           socials={socials}
@@ -54,12 +59,14 @@ export default async function RootLayout({ children }) {
           {children}
           <SiteFooter
             brandName={brandName}
+            logo={logo}
             address={settings?.address}
             phone={settings?.phone || settings?.contactPhone}
             email={settings?.email || settings?.contactEmail}
             socials={socials}
           />
         </div>
+        <FloatingContact phone={phone} whatsappUrl={whatsappLink} />
         <MobileFooterNav />
       </body>
     </html>

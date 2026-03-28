@@ -14,7 +14,7 @@ const nav = [
   { href: "/contact", label: "Enroll / Contact" },
 ];
 
-export function SiteHeader({ brandName = "Kulguru Institute", phone, email }) {
+export function SiteHeader({ brandName = "Kulguru Institute", logo, phone, email }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -40,12 +40,19 @@ export function SiteHeader({ brandName = "Kulguru Institute", phone, email }) {
       </div>
       <Container className="flex items-center justify-between py-4">
         <Link href="/" className="flex min-w-0 items-center gap-3">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-r from-(--primary) to-(--accent) text-sm font-semibold text-white shadow-[0_8px_20px_rgb(15_107_76/0.32)] ring-1 ring-white/35">
-            {String(brandName || "K").slice(0, 1).toUpperCase()}
-          </span>
-          <span className="truncate text-base font-semibold tracking-tight text-slate-900">
-            {brandName}
-          </span>
+          {logo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={logo}
+              alt={brandName}
+              className="w-32 "
+            />
+          ) : (
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-r from-(--primary) to-(--accent) text-sm font-semibold text-white shadow-[0_8px_20px_rgb(15_107_76/0.32)] ring-1 ring-white/35">
+              {String(brandName || "K").slice(0, 1).toUpperCase()}
+            </span>
+          )}
+       
         </Link>
         <nav className="hidden items-center gap-1 text-sm font-medium text-slate-700 md:flex">
           {items.map((i) => {
@@ -58,11 +65,10 @@ export function SiteHeader({ brandName = "Kulguru Institute", phone, email }) {
               <Link
                 key={i.href}
                 href={i.href}
-                className={`rounded-xl px-4 py-2 transition ${
-                  active
+                className={`rounded-xl px-4 py-2 transition ${active
                     ? "bg-(--primary)/12 text-(--primary)"
                     : "hover:bg-(--accent)/10 hover:text-(--primary)"
-                }`}
+                  }`}
               >
                 {i.label}
               </Link>
@@ -108,11 +114,10 @@ export function SiteHeader({ brandName = "Kulguru Institute", phone, email }) {
                   <Link
                     key={i.href}
                     href={i.href}
-                    className={`rounded-2xl px-4 py-3 text-sm font-semibold transition ${
-                      active
+                    className={`rounded-2xl px-4 py-3 text-sm font-semibold transition ${active
                         ? "bg-(--primary)/12 text-(--primary)"
                         : "text-slate-700 hover:bg-(--accent)/10"
-                    }`}
+                      }`}
                     onClick={() => setOpen(false)}
                   >
                     {i.label}
