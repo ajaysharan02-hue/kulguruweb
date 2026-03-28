@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
-    <div className="bg-slate-50">
+    <div className="academy-bg">
       <Container className="py-20">
         <div className="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-soft">
           <div className="text-sm font-semibold uppercase tracking-wider text-slate-500">
@@ -22,7 +22,7 @@ export default function NotFound() {
             </Button>
             <Link
               href="/contact"
-              className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-900 ring-1 ring-slate-200 hover:bg-slate-50"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-900 ring-1 ring-slate-200 hover:bg-white/90"
             >
               Contact admissions
             </Link>

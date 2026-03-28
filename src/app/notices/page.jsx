@@ -14,7 +14,7 @@ export default async function NoticesPage() {
   const notices = res?.data || [];
 
   return (
-    <div className="bg-slate-50">
+    <div className="academy-bg">
       <Container className="py-12">
         <SectionHeading
           eyebrow="Notices"
@@ -26,12 +26,12 @@ export default async function NoticesPage() {
           {notices.map((n) => (
             <div
               key={n._id}
-              className="rounded-3xl border border-slate-200 bg-white p-7 shadow-soft"
+              className="rounded-4xl border border-[#c3dad0] bg-white p-7 shadow-soft"
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div className="text-base font-semibold text-slate-900">{n.title}</div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600 ring-1 ring-slate-200">
+                  <span className="rounded-full bg-(--primary)/10 px-3 py-1 text-xs text-(--primary) ring-1 ring-(--primary)/20">
                     {n.type || "general"}
                   </span>
                   {n.publishDate ? (

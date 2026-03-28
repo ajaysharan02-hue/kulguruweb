@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="bg-slate-50">
+    <div className="academy-bg">
       <Container className="py-12">
         <SectionHeading
           eyebrow="Legal"

@@ -53,7 +53,7 @@ export function InquiryForm({ programs = [] }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5">
        {ok ? (
         <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
           Your inquiry has been submitted successfully. We will contact you soon.
@@ -66,20 +66,20 @@ export function InquiryForm({ programs = [] }) {
       ) : null}
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="text-xs font-semibold text-slate-700">Full name</label>
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-700">Full name</label>
           <input
             name="name"
             required
-            className="mt-2 h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
+            className="mt-2 h-11 w-full rounded-2xl border border-[#c3dad0] bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
             placeholder="Your name"
           />
         </div>
         <div>
-          <label className="text-xs font-semibold text-slate-700">Phone</label>
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-700">Phone</label>
           <input
             name="mobile"
             required
-            className="mt-2 h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
+            className="mt-2 h-11 w-full rounded-2xl border border-[#c3dad0] bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
             placeholder="Your phone number"
           />
         </div>
@@ -87,22 +87,22 @@ export function InquiryForm({ programs = [] }) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="text-xs font-semibold text-slate-700">Email</label>
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-700">Email</label>
           <input
             type="email"
             name="email"
-            className="mt-2 h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
+            className="mt-2 h-11 w-full rounded-2xl border border-[#c3dad0] bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
             placeholder="you@example.com"
           />
         </div>
         <div>
-          <label className="text-xs font-semibold text-slate-700">Program interest</label>
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-700">Program interest</label>
           <input type="hidden" name="program" value={selectedProgramId} />
           <input
             list="programs-list"
             value={programQuery}
             onChange={(e) => setProgramQuery(e.target.value)}
-            className="mt-2 h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
+            className="mt-2 h-11 w-full rounded-2xl border border-[#c3dad0] bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
             placeholder="Start typing program name…"
           />
           <datalist id="programs-list">
@@ -121,11 +121,11 @@ export function InquiryForm({ programs = [] }) {
       </div>
 
       <div>
-        <label className="text-xs font-semibold text-slate-700">Message</label>
+        <label className="text-xs font-semibold uppercase tracking-wide text-slate-700">Message</label>
         <textarea
           name="message"
-          rows={5}
-          className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-(--accent)/20 focus:ring-2"
+          rows={4}
+          className="mt-2 w-full rounded-2xl border border-[#c3dad0] bg-white px-4 py-3 text-sm outline-none ring-(--accent)/20 focus:ring-2 sm:rows-5"
           placeholder="Tell us your background and what you want to enroll in…"
         />
       </div>

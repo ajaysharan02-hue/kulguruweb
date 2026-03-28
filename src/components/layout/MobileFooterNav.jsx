@@ -71,7 +71,11 @@ export function MobileFooterNav() {
                   {active ? (
                     <span className="absolute top-2 h-1.5 w-10 rounded-full bg-(--accent)" />
                   ) : null}
-                  <Icon className={`h-5 w-5 ${active ? "text-(--primary)" : ""}`} />
+                  <Icon
+                    className={`h-5 w-5 ${
+                      active ? "text-(--primary)" : ""
+                    }`}
+                  />
                   <span>{label}</span>
                 </Link>
               );

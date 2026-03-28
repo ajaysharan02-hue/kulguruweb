@@ -11,15 +11,15 @@ export function Button({
   ...props
 }) {
   const base =
-    "inline-flex items-center justify-center rounded-xl font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)]/25 disabled:opacity-60 disabled:pointer-events-none";
+    "inline-flex items-center justify-center rounded-xl font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[color:var(--accent)]/35 disabled:opacity-60 disabled:pointer-events-none";
   const variants = {
     primary:
-      "bg-[color:var(--primary)] text-white shadow-sm hover:shadow-md hover:brightness-110 active:brightness-95",
+      "bg-linear-to-r from-(--primary) to-(--accent) text-white shadow-[0_12px_28px_rgb(15_107_76_/_0.32)] hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgb(15_107_76_/_0.4)] active:translate-y-0",
     secondary:
-      "bg-white text-slate-900 ring-1 ring-slate-200 shadow-sm hover:bg-slate-50 hover:shadow-md",
+      "bg-white text-slate-900 ring-1 ring-[#c3dad0] shadow-sm hover:bg-[#f3fbf7] hover:shadow-md",
     ghost: "text-slate-900 hover:bg-slate-100",
     accent:
-      "bg-[color:var(--accent)] text-slate-950 shadow-sm hover:shadow-md hover:brightness-105 active:brightness-95",
+      "bg-linear-to-r from-(--gold) to-[#f0d489] text-[#194334] shadow-[0_12px_28px_rgb(186_144_52_/_0.26)] hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgb(186_144_52_/_0.32)] active:translate-y-0",
   };
   const sizes = {
     sm: "h-9 px-3 text-sm",

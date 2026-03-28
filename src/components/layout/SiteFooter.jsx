@@ -46,38 +46,35 @@ function SocialIcon({ id }) {
 export function SiteFooter({ brandName = "Kulguru Institute", address, phone, email, socials = [] }) {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden border-t border-slate-200 bg-(--primary) text-white">
-      {/* subtle gold glow */}
-      <div className="pointer-events-none absolute -left-40 -top-40 h-[520px] w-[520px] rounded-full bg-(--accent)/22 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-56 -right-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl" />
+    <footer className="relative overflow-hidden border-t border-[#1f8a62] bg-[#0f6b4c] text-white">
 
       <Container className="relative grid gap-10 py-14 md:grid-cols-12">
         {/* Brand */}
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/10 text-base font-semibold text-white ring-1 ring-white/15">
+            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 text-base font-semibold text-white ring-1 ring-white/25">
               {String(brandName || "K").slice(0, 1).toUpperCase()}
             </span>
             <div className="text-lg font-semibold tracking-tight">{brandName}</div>
           </div>
-          <p className="mt-4 max-w-md text-sm leading-6 text-white/75">
+          <p className="mt-4 max-w-md text-sm leading-6 text-white/80">
             Professional programs and degrees with enrollment guidance and student support.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2 text-xs text-white/80">
-            <span className="rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/15">
+          <div className="mt-6 flex flex-wrap gap-2 text-xs text-white/85">
+            <span className="rounded-full bg-white/12 px-3 py-1 ring-1 ring-white/20">
               Admissions support
             </span>
-            <span className="rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/15">
+            <span className="rounded-full bg-white/12 px-3 py-1 ring-1 ring-white/20">
               Transparent fees
             </span>
-            <span className="rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/15">
+            <span className="rounded-full bg-white/12 px-3 py-1 ring-1 ring-white/20">
               Student-first
             </span>
           </div>
 
-          <div className="mt-8 flex items-center gap-3 text-xs text-white/70">
-            <span className="h-1.5 w-1.5 rounded-full bg-(--accent)" />
+          <div className="mt-8 flex items-center gap-3 text-xs text-white/75">
+            <span className="h-1.5 w-1.5 rounded-full bg-white/85" />
             <span>Admissions open — Enroll now</span>
           </div>
 
@@ -91,7 +88,7 @@ export function SiteFooter({ brandName = "Kulguru Institute", address, phone, em
                   rel="noopener noreferrer"
                   aria-label={s.label}
                   title={s.label}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/12 text-white ring-1 ring-white/25 transition hover:bg-white/20"
                 >
                   <SocialIcon id={s.id} />
                 </a>
@@ -106,7 +103,7 @@ export function SiteFooter({ brandName = "Kulguru Institute", address, phone, em
             <div className="text-xs font-semibold uppercase tracking-wider text-white/70">
               Quick links
             </div>
-            <ul className="mt-4 space-y-2.5 text-white/80">
+            <ul className="mt-4 space-y-2.5 text-white/82">
               <li>
                 <Link href="/programs" className="hover:text-white">
                   Programs
@@ -136,22 +133,22 @@ export function SiteFooter({ brandName = "Kulguru Institute", address, phone, em
           <div className="text-xs font-semibold uppercase tracking-wider text-white/70">
             Contact
           </div>
-          <ul className="mt-4 space-y-3 text-sm text-white/80">
+          <ul className="mt-4 space-y-3 text-sm text-white/82">
             {address ? (
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 rounded-full bg-(--accent)" />
+                <span className="mt-1.5 h-2 w-2 rounded-full bg-white/90" />
                 <span className="leading-6">{address}</span>
               </li>
             ) : null}
             {phone ? (
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 rounded-full bg-(--accent)" />
+                <span className="mt-1.5 h-2 w-2 rounded-full bg-white/90" />
                 <span className="leading-6">Phone: {phone}</span>
               </li>
             ) : null}
             {email ? (
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 rounded-full bg-(--accent)" />
+                <span className="mt-1.5 h-2 w-2 rounded-full bg-white/90" />
                 <span className="leading-6">Email: {email}</span>
               </li>
             ) : null}
@@ -160,12 +157,12 @@ export function SiteFooter({ brandName = "Kulguru Institute", address, phone, em
       </Container>
 
       {/* Bottom bar */}
-      <div className="relative border-t border-white/10">
-        <Container className="flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/65 sm:flex-row">
+      <div className="relative border-t border-white/15">
+        <Container className="flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/70 sm:flex-row">
           <span>
             © {year} {brandName}. All rights reserved.
           </span>
-          <span className="text-white/65">
+          <span className="text-white/70">
             Design &amp; developed by{" "}
             <a
               href="https://in.linkedin.com/in/ajay-sharan-bb2335103"
