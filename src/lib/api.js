@@ -39,6 +39,13 @@ export async function getBanners({ status = "active", limit = 10 } = {}) {
   return apiFetch(`/api/banners?${qs.toString()}`, { next: { revalidate: 60 } });
 }
 
+export async function getServicePartners({ status = "active", limit = 48 } = {}) {
+  const qs = new URLSearchParams();
+  if (status) qs.set("status", status);
+  if (limit) qs.set("limit", String(limit));
+  return apiFetch(`/api/servicepatners?${qs.toString()}`, { next: { revalidate: 120 } });
+}
+
 export async function getPrograms({ status = "active", limit = 50, search } = {}) {
   const qs = new URLSearchParams();
   if (status) qs.set("status", status);

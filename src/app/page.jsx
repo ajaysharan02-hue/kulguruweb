@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { getBanners, getNotifications, getPrograms, getSettings } from "@/lib/api";
+import { getBanners, getNotifications, getPrograms, getServicePartners, getSettings } from "@/lib/api";
 import { SITE_NAME } from "@/lib/config";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { HeroCarousel } from "@/components/home/HeroCarousel";
+import { ServicePartnersSection } from "@/components/home/ServicePartnersSection";
 import { ProgramCard } from "@/components/programs/ProgramCard";
 
 function GraduationCapIcon() {
@@ -61,9 +62,10 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const [bannersRes, programsRes, noticesRes, settingsRes] = await Promise.all([
+  const [bannersRes, programsRes, partnersRes, noticesRes, settingsRes] = await Promise.all([
     getBanners({ status: "active", limit: 10 }).catch(() => ({ data: [] })),
     getPrograms({ status: "active", limit: 6 }).catch(() => ({ data: [] })),
+    getServicePartners({ status: "active", limit: 24 }).catch(() => ({ data: [] })),
     getNotifications({ status: "published", limit: 5 }).catch(() => ({ data: [] })),
     getSettings().catch(() => null),
   ]);
@@ -72,6 +74,7 @@ export default async function Home() {
   const brandName = settings?.brandName || settings?.instituteName || SITE_NAME;
   const banners = bannersRes?.data || [];
   const programs = programsRes?.data || [];
+  const partners = partnersRes?.data || [];
   const notices = noticesRes?.data || [];
   const totalPrograms = programs.length;
   const totalNotices = notices.length;
@@ -113,6 +116,8 @@ export default async function Home() {
           </div>
         </Container>
       </section>
+
+      <ServicePartnersSection partners={partners} />
 
       <section className="bg-white">
         <Container className="pb-12 pt-4">
