@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getBanners, getNotifications, getPrograms, getServicePartners, getSettings } from "@/lib/api";
-import { SITE_NAME } from "@/lib/config";
+import { resolvePublicUrl, SITE_NAME, SITE_URL } from "@/lib/config";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
@@ -102,8 +102,49 @@ export default async function Home() {
     },
   ];
 
+  const partnersLdList = (partners || [])
+    .filter((p) => p && (p.image || p.imageUrl || p.name))
+    .slice(0, 12)
+    .map((p, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "Organization",
+        name: p.name || `Service Partner ${idx + 1}`,
+        ...(resolvePublicUrl(p.image || p.imageUrl) ? { image: resolvePublicUrl(p.image || p.imageUrl) } : {}),
+      },
+    }));
+
+  const servicePartnersItemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Service Partner Institutes",
+    itemListOrder: "Unordered",
+    numberOfItems: partnersLdList.length,
+    itemListElement: partnersLdList,
+  };
+
+  const homeWebPageLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Home",
+    url: SITE_URL,
+    description:
+      settings?.tagline ||
+      "Professional programs, degrees, and enrollment guidance.",
+    isPartOf: {
+      "@type": "WebSite",
+      url: SITE_URL,
+    },
+    mainEntity: servicePartnersItemListLd,
+  };
+
   return (
     <div className="academy-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeWebPageLd) }}
+      />
       <HeroCarousel items={banners} />
 
       <section className="bg-white">

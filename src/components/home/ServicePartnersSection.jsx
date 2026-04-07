@@ -128,39 +128,39 @@ export function ServicePartnersSection({ partners = [] }) {
 
           <div
             ref={scrollerRef}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-2 pt-1 [scrollbar-width:thin] [scrollbar-color:#b8d4c8_transparent] sm:gap-5 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#b8d4c8]"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-2 pt-1 [scrollbar-width:thin] [scrollbar-color:#b8d4c8_transparent] sm:gap-6 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#b8d4c8]"
           >
             {list.map((partner, i) => {
               const src = partnerImageSrc(partner);
               return (
                 <article
                   key={partner._id || `${partner.name}-${i}`}
-                  className="group w-[min(100%,260px)] shrink-0 snap-start sm:w-[240px]"
+                  className="group w-[min(100%,300px)] shrink-0 snap-start sm:w-[280px]"
                 >
-                  <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#c2d9cf] bg-white/95 shadow-soft ring-1 ring-[#0f6b4c]/10 transition duration-300 hover:-translate-y-0.5 hover:border-[#0f6b4c]/30 hover:shadow-lg">
-                    <div className="relative border-b border-[#e3efe8] bg-linear-to-br from-[#f5faf7] via-white to-[#ecf5f0] px-4 py-5">
-                      <span className="absolute right-3 top-3 rounded-full bg-[#0f6b4c]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#0f6b4c]">
+                  <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#c7ddd3] bg-white shadow-soft transition duration-300 hover:-translate-y-0.5 hover:border-[#0f6b4c]/35 hover:shadow-xl">
+                    <div className="relative border-b border-[#e2eee8] bg-white">
+                      <span className="absolute right-3 top-3 z-10 rounded-full bg-[#0f6b4c]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#0f6b4c] backdrop-blur-sm">
                         Program partner
                       </span>
-                      <div className="mx-auto flex h-[100px] w-full max-w-[200px] items-center justify-center pt-5">
+                      <div className="flex h-[180px] w-full items-center justify-center bg-linear-to-br from-[#f4faf7] via-white to-[#ecf5f0] px-4 py-4">
                         {/* eslint-disable-next-line @next/next/no-img-element -- dynamic API URLs */}
                         <img
                           src={src}
                           alt={partner.name ? `${partner.name} logo` : "Partner institute logo"}
-                          className="max-h-[72px] max-w-full object-contain opacity-95 transition duration-300 group-hover:scale-[1.03] group-hover:opacity-100"
+                          className="h-full w-full object-contain opacity-95 transition duration-300 group-hover:scale-[1.03] group-hover:opacity-100"
                           loading="lazy"
                           decoding="async"
                         />
                       </div>
                     </div>
-                    <div className="flex flex-1 flex-col px-4 pb-4 pt-3">
-                      <h3 className="text-center text-sm font-semibold leading-snug text-[#1d4638]">{partner.name}</h3>
+                    <div className="flex flex-1 flex-col px-5 pb-5 pt-4">
+                      <h3 className="text-center text-base font-semibold leading-snug text-[#1d4638]">{partner.name}</h3>
                       {partner.description ? (
-                        <p className="mt-2 line-clamp-2 text-center text-xs leading-relaxed text-[#57776b]">
+                        <p className="mt-2 line-clamp-2 text-center text-sm leading-relaxed text-[#57776b]">
                           {partner.description}
                         </p>
                       ) : (
-                        <p className="mt-2 text-center text-[11px] leading-relaxed text-[#7a9388]">
+                        <p className="mt-2 text-center text-xs leading-relaxed text-[#7a9388]">
                           Programs & admissions in partnership
                         </p>
                       )}

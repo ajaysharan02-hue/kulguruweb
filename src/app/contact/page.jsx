@@ -1,4 +1,4 @@
-import { getPrograms, getSettings } from "@/lib/api";
+import { getCourses, getPrograms, getSettings } from "@/lib/api";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InquiryForm } from "@/components/contact/InquiryForm";
@@ -9,12 +9,14 @@ export const metadata = {
 };
 
 export default async function ContactPage() {
-  const [settingsRes, programsRes] = await Promise.all([
+  const [settingsRes, programsRes, coursesRes] = await Promise.all([
     getSettings().catch(() => null),
     getPrograms({ status: "active", limit: 500 }).catch(() => ({ data: [] })),
+    getCourses({ status: "active", limit: 1000 }).catch(() => ({ data: [] })),
   ]);
   const settings = settingsRes?.data || {};
   const programs = programsRes?.data || [];
+  const courses = coursesRes?.data || [];
 
   return (
     <div className="academy-bg">
@@ -31,7 +33,7 @@ export default async function ContactPage() {
               <div className="pointer-events-none absolute -left-32 -top-32 h-[320px] w-[320px] rounded-full bg-(--accent)/12 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-40 -right-32 h-[320px] w-[320px] rounded-full bg-(--primary)/8 blur-3xl" />
               <div className="relative">
-                <InquiryForm programs={programs} />
+                <InquiryForm programs={programs} courses={courses} />
               </div>
             </div>
           </div>

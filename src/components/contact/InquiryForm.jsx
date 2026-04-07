@@ -4,11 +4,12 @@ import { useMemo, useState } from "react";
 import { submitInquiry } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 
-export function InquiryForm({ programs = [] }) {
+export function InquiryForm({ programs = [], courses = [] }) {
   const [loading, setLoading] = useState(false);
   const [ok, setOk] = useState(false);
   const [error, setError] = useState("");
-  const [programQuery, setProgramQuery] = useState("");
+  const [selectedProgramId, setSelectedProgramId] = useState("");
+  const [selectedCourseId, setSelectedCourseId] = useState("");
 
   const programOptions = useMemo(() => {
     return (programs || [])
@@ -17,16 +18,18 @@ export function InquiryForm({ programs = [] }) {
       .sort((a, b) => a.label.localeCompare(b.label));
   }, [programs]);
 
-  const selectedProgramId = useMemo(() => {
-    const q = String(programQuery || "").trim().toLowerCase();
-    if (!q) return "";
-    const exact = programOptions.find(
-      (p) =>
-        p.label.toLowerCase() === q ||
-        (p.code && p.code.toLowerCase() === q)
-    );
-    return exact?.id || "";
-  }, [programQuery, programOptions]);
+  const courseOptions = useMemo(() => {
+    return (courses || [])
+      .filter((c) => c && c._id && c.name)
+      .map((c) => ({
+        id: c._id,
+        label: c.name,
+        code: c.code,
+        programId: c.program?._id || c.program,
+      }))
+      .filter((c) => selectedProgramId && c.programId === selectedProgramId)
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [courses, selectedProgramId]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -37,14 +40,15 @@ export function InquiryForm({ programs = [] }) {
     const formEl = e.currentTarget;
     const form = new FormData(formEl);
     const payload = Object.fromEntries(form.entries());
-    // ensure backend receives program id (MongoId)
     if (selectedProgramId) payload.program = selectedProgramId;
+    if (selectedCourseId) payload.course = selectedCourseId;
 
     try {
       await submitInquiry(payload);
       setOk(true);
       formEl?.reset?.();
-      setProgramQuery("");
+      setSelectedProgramId("");
+      setSelectedCourseId("");
     } catch (err) {
       setError(err?.message || "Failed to submit. Please try again.");
     } finally {
@@ -97,26 +101,40 @@ export function InquiryForm({ programs = [] }) {
         </div>
         <div>
           <label className="text-xs font-semibold uppercase tracking-wide text-slate-700">Program interest</label>
-          <input type="hidden" name="program" value={selectedProgramId} />
-          <input
-            list="programs-list"
-            value={programQuery}
-            onChange={(e) => setProgramQuery(e.target.value)}
+          <select
+            name="program"
+            value={selectedProgramId}
+            onChange={(e) => {
+              setSelectedProgramId(e.target.value);
+              setSelectedCourseId("");
+            }}
+            required
             className="mt-2 h-11 w-full rounded-2xl border border-[#c3dad0] bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2"
-            placeholder="Start typing program name…"
-          />
-          <datalist id="programs-list">
+          >
+            <option value="">Select program</option>
             {programOptions.map((p) => (
-              <option key={p.id} value={p.label}>
-                {p.code ? `(${p.code})` : ""}
+              <option key={p.id} value={p.id}>
+                {p.label}{p.code ? ` (${p.code})` : ""}
               </option>
             ))}
-          </datalist>
-          {!selectedProgramId && programQuery ? (
-            <p className="mt-2 text-xs text-slate-500">
-              Select a program from suggestions (exact name match).
-            </p>
-          ) : null}
+          </select>
+        </div>
+        <div>
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-700">Course interest</label>
+          <select
+            name="course"
+            value={selectedCourseId}
+            onChange={(e) => setSelectedCourseId(e.target.value)}
+            disabled={!selectedProgramId || !courseOptions.length}
+            className="mt-2 h-11 w-full rounded-2xl border border-[#c3dad0] bg-white px-4 text-sm outline-none ring-(--accent)/20 focus:ring-2 disabled:cursor-not-allowed disabled:bg-slate-100"
+          >
+            <option value="">{selectedProgramId ? "Select course (optional)" : "Select program first"}</option>
+            {courseOptions.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}{c.code ? ` (${c.code})` : ""}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-## Kulguru Institute Website (Next.js)
+## Kulgurusp Institute Website (Next.js)
 
 SEO-friendly public website for your institute, connected to your backend APIs.
 

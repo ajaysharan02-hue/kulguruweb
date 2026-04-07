@@ -1,8 +1,7 @@
-import Link from "next/link";
+
 import { getPrograms, getSettings } from "@/lib/api";
 import { SITE_NAME } from "@/lib/config";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProgramCard } from "@/components/programs/ProgramCard";
 import { ProgramsSearchBar } from "@/components/programs/ProgramsSearchBar";
 

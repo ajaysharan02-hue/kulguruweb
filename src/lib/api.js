@@ -58,6 +58,19 @@ export async function getProgramById(id) {
   return apiFetch(`/api/programs/${id}`, { next: { revalidate: 60 } });
 }
 
+export async function getCourses({ status = "active", limit = 100, search, program } = {}) {
+  const qs = new URLSearchParams();
+  if (status) qs.set("status", status);
+  if (limit) qs.set("limit", String(limit));
+  if (search) qs.set("search", search);
+  if (program) qs.set("program", program);
+  return apiFetch(`/api/courses?${qs.toString()}`, { next: { revalidate: 60 } });
+}
+
+export async function getCourseById(id) {
+  return apiFetch(`/api/courses/${id}`, { next: { revalidate: 60 } });
+}
+
 export async function getNotifications({ status = "published", limit = 20, type } = {}) {
   const qs = new URLSearchParams();
   if (status) qs.set("status", status);

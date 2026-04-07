@@ -43,7 +43,7 @@ function SocialIcon({ id }) {
   }
 }
 
-export function SiteFooter({ brandName = "Kulguru Institute", logo, address, phone, email, socials = [] }) {
+export function SiteFooter({ brandName = "Kulgurusp Institute", logo, address, phone, email, socials = [] }) {
   const year = new Date().getFullYear();
   return (
     <footer className="relative overflow-hidden border-t border-[#1f8a62] bg-[#0f6b4c] text-white">
